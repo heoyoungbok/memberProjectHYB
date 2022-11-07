@@ -9,11 +9,11 @@
         values (#{boardWriter},#{boardTitle},#{boardContents},#{fileAttached})
     </insert>
     <insert id="saveFile" parameterType="board">
-        insert into board_file_table(orginalFileName, storedFileName, boardId)
-        values (#{orginalFileName}, #{storedFileName}, #{id})
+        insert into board_file_table(originalFileName,storedFileName,boardId)
+        values (#{originalFileName},#{storedFileName},#{boardId})
     </insert>
 
     <select id="findAll" parameterType="board">
-        select * from board_table order by id asc
+        select * from board_table order boardId asc
     </select>
 </mapper>

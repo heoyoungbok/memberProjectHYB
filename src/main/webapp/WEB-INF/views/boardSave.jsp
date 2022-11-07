@@ -12,8 +12,8 @@
     <script src="/resources/js/jquery.js"></script>
 </head>
 <body>
-<form action="/board/save" method="post" name="boardForm" enctype="multipart/form-data">
-    <input type="text" name="boardWriter" value="${sessionScope.loginEmail}" placeholder="작성자"  readonly>
+<form action="/board/save" method="post" name="boardForm"enctype="multipart/form-data">
+    <input type="text" name="boardWriter" value="${sessionScope.loginEmail}" placeholder="작성자" readonly>
     <input type="text" name="boardTitle" placeholder="제목">
     <textarea name="boardContents" placeholder="내용을 입력하세요" cols="30" rows="10"></textarea>
         <input type="file" name="boardFile">

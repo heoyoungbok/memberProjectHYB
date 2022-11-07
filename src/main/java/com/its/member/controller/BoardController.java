@@ -29,7 +29,7 @@ private BoardService boardService;
     @PostMapping("/save")
     public String boardSave(@ModelAttribute BoardDTO boardDTO) throws IOException {
         boardService.boardSave(boardDTO);
-        return "redirect:/board/";
+        return "boardList";
     }
     @GetMapping("/")
     public String findAll(Model model){

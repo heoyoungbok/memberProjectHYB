@@ -11,7 +11,7 @@ import java.security.Timestamp;
 @Setter
 @ToString
 public class BoardDTO {
-    private Long boardId;
+    private Long id;
     private String boardTitle;
     private String boardWriter;
     private String boardContents;

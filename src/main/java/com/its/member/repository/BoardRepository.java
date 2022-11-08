@@ -27,10 +27,32 @@ public class BoardRepository {
     }
 
     public List<BoardDTO> pagingList(Map<String, Integer> pagingParams) {
-        return sql.selectList("Board.PagingList",pagingParams);
+        return sql.selectList("Board.pagingList",pagingParams);
     }
 
     public int boardCount() {
         return sql.selectOne("Board.boardCount");
+    }
+
+    public void updateHits(Long id) {
+        sql.update("Board.updateHits",id);
+    }
+
+    public BoardDTO findById(Long id) {
+       BoardDTO boardDTO = sql.selectOne("Board.findById",id);
+       if (boardDTO.getFileAttached() == 1){
+           return sql.selectOne("Board.findByIdFile",id);
+
+       }else {
+           return boardDTO;
+       }
+    }
+
+    public void update(BoardDTO boardDTO) {
+        sql.update("Board.update",boardDTO);
+    }
+
+    public void delete(Long id) {
+        sql.delete("Board.delete",id);
     }
 }

@@ -14,6 +14,7 @@
     <button onclick="logout()">로그아웃</button>
     <button onclick="boardSave()">게시글</button>
 
+
 </body>
 <script>
     const logout = () => {

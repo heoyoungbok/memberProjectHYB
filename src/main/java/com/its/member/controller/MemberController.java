@@ -26,6 +26,8 @@ public class MemberController {
         return "memberLogin";
     }
 
+
+
     @PostMapping("/joinCheck")
     public @ResponseBody String joinCheck(@RequestParam("inputEmail") String memberEmail) {
 
@@ -33,27 +35,6 @@ public class MemberController {
         return checkResult;
     }
 
-    @GetMapping("/login")
-    public String loginForm() {
-        return "memberLogin";
-    }
 
-    @PostMapping("/login")
-    public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session, Model model) {
-        boolean loginResult = memberService.login(memberDTO);
-        if (loginResult) {
-            session.setAttribute("loginEmail", memberDTO.getMemberEmail());
-            model.addAttribute("modelEmail", memberDTO.getMemberEmail());
-            return "memberMain";
-        } else {
-            return "memberLogin";
-        }
-    }
-
-    @GetMapping("logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "index";
-    }
 
 }

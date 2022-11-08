@@ -13,6 +13,7 @@
 <body>
 <button onclick="saveFn()">회원가입</button>
 <button onclick="loginFn()">로그인</button>
+<button onclick="list()">글목록</button>
 <%--<button onclick="boardListFn()">글목록</button>--%>
 </body>
 <script>
@@ -21,6 +22,10 @@
     }
     const loginFn = () => {
       location.href="/login";
+    }
+
+    const list = () => {
+      location.href="/board/";
     }
     // const boardListFn = () => {
     //   location.href="/boardList";

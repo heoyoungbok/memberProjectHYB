@@ -1,14 +1,12 @@
 package com.its.member.controller;
 
 import com.its.member.dto.BoardDTO;
+import com.its.member.dto.PageDTO;
 import com.its.member.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.io.IOException;
@@ -29,7 +27,7 @@ private BoardService boardService;
     @PostMapping("/save")
     public String boardSave(@ModelAttribute BoardDTO boardDTO) throws IOException {
         boardService.boardSave(boardDTO);
-        return "boardList";
+        return "redirect:/board/";
     }
     @GetMapping("/")
     public String findAll(Model model){
@@ -37,4 +35,15 @@ private BoardService boardService;
         model.addAttribute("boardList",boardList);
         return "boardList";
     }
+
+    @GetMapping("/paging")
+    public String paging(@RequestParam(value = "page",required = false,defaultValue = "1") Model model,int page){
+        List<BoardDTO> pagingList = boardService.pagingList(page);
+        PageDTO pageDTO = boardService.PagingParam(page);
+        model.addAttribute("boardList",pagingList);
+        model.addAttribute("paging",pageDTO);
+        return "boardPaging";
+    }
+
+
 }

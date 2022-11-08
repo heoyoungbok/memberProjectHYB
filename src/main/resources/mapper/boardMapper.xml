@@ -13,7 +13,11 @@
         values (#{originalFileName},#{storedFileName},#{boardId})
     </insert>
 
-    <select id="findAll" parameterType="board">
-        select * from board_table order boardId asc
+    <select id="findAll" resultType="board">
+        select * from board_table order by boardId asc
+    </select>
+
+    <select id="pagingList" parameterType="java.util.HashMap" resultType="board">
+        select * from board_table order by id asc limit #{start},#{limit}
     </select>
 </mapper>

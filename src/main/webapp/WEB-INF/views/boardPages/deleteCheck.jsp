@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 </head>
 <body>
-<form action="/board/update" method="post" name="updateForm">
+<form action="/board/delete" method="post" name="updateForm">
     <input type="text" name="id" value="${board.id}"readonly>
     <input type="text" name="boardWriter" value="${sessionScope.loginEmail}" readonly>
     <input type="text" name="boardTitle" value="${board.boardTitle}">

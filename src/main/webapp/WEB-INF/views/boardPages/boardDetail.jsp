@@ -15,12 +15,18 @@
     <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
  <style>
-
+#boardDetail{
+    width: 750px;
+    margin-top: 50px;
+}
+#comment-write{
+    width: 500px;
+}
  </style>
 
 </head>
 <body>
-<jsp:include page="layout/header.jsp" flush="false"></jsp:include>
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 <div class="container" id="boardDetail">
 <table class="table table-striped">
     <tr>
@@ -45,13 +51,14 @@
     </tr>
     <tr>
         <th>date</th>
-        <td>${board.boardCreatedDate}</td>
+        <td><c:set var="now" value="<%=new java.util.Date()%>" /><fmt:formatDate var="sysYear" value="${now}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+            <c:out value="${sysYear}" /></td>
     </tr>
     <c:if test="${board.storedFileName != null}">
         <tr>
             <th>file</th>
             <td>
-                <img src="${pageContext.request.contextPath}/upload/${board.storedFileName}}"
+                <img src="${pageContext.request.contextPath}/upload/${board.storedFileName}"
                     alt="" width="100" height="100">
             </td>
         </tr>
@@ -64,7 +71,7 @@
 <div class="container mt-5" id="comment-write" >
     <div class="input-group-sm mb-3">
         <div class="form-floating">
-            <input type="text" id="commentWriter" class="form-control" placeholder="작성자">
+            <input type="text" id="commentWriter" value="${sessionScope.loginEmail}" class="form-control" placeholder="작성자">
             <label for="commentWriter">작성자</label>
         </div>
         <div class="form-floating">
@@ -135,15 +142,15 @@
     }
     const listFn = () => {
         const page='${page}';
-      location.href="/board/paging?page="+page;
+      location.href="/board/paging?page=" + page;
     }
     const updateFn = () => {
         const id = '${board.id}';
-        location.href="/board/update?id="+ id;
+        location.href="/board/update?id=" + id;
     }
     const deleteFn = () => {
       const id = '${board.id}';
-      location.href="/board/delete?id="+id;
+      location.href="/board/delete?id=" + id;
     }
 </script>
 </html>

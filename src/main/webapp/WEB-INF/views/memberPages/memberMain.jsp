@@ -13,6 +13,7 @@
 <body>
     <button onclick="logout()">로그아웃</button>
     <button onclick="boardSave()">게시글</button>
+    <button onclick="myPageFn()">마이페이지</button>
 
 
 </body>
@@ -24,5 +25,9 @@
     const boardSave = () => {
       location.href = "/board/save";
     }
+    const myPageFn = () => {
+      location.href="/myPage";
+    }
+
 </script>
 </html>

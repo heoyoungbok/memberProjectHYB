@@ -23,7 +23,7 @@
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
                 <li><a href="/board/save" class="nav-link px-2 text-white">글작성</a></li>
-                <li><a href="/board" class="nav-link px-2 text-white">글목록</a></li>
+                <li><a href="/board/paging" class="nav-link px-2 text-white">글목록</a></li>
 <%--                <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>--%>
 <%--                <li><a href="#" class="nav-link px-2 text-white">About</a></li>--%>
             </ul>
@@ -44,10 +44,11 @@
                     <c:when test="${sessionScope.loginEmail != null}"> <%--로그인을 했으면    --%>
                         <span>${sessionScope.loginEmail}님</span>
                         <button type="button" onclick="logout()" class="btn btn-outline-light me-2">Logout</button>
+                        <button type="button" onclick="myPageFF()" class="btn btn-outline-light me-2">마이페이지</button>
                     </c:when>
                     <c:otherwise>
                         <button type="button" onclick="login()" class="btn btn-outline-light me-2">Login</button>
-                        <button type="button" class="btn btn-warning">Sign-up</button>
+                        <button type="button" onclick="Signup()" class="btn btn-warning">Sign-up</button>
                     </c:otherwise>
                 </c:choose>
             </div>
@@ -61,6 +62,13 @@
     }
     const logout = () => {
       location.href="/logout";
+    }
+    const Signup = () => {
+      location.href="/save";
+    }
+
+    const myPageFF = () => {
+      location.href="/myPage";
     }
 </script>
 </html>

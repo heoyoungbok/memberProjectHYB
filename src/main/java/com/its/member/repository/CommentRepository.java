@@ -11,9 +11,8 @@ import java.util.List;
 public class CommentRepository {
     @Autowired
     private SqlSessionTemplate sql;
-    public List<CommentDTO> commentSave(CommentDTO commentDTO){
-        return sql.selectList("Comment.commentSave",commentDTO);
-
+    public void save(CommentDTO commentDTO){
+        sql.insert("Comment.save",commentDTO);
     }
 
     public List<CommentDTO>findAll(Long boardId){

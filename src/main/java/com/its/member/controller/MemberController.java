@@ -1,5 +1,6 @@
 package com.its.member.controller;
 
+import com.its.member.dto.BoardDTO;
 import com.its.member.dto.MemberDTO;
 import com.its.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,14 @@ public class MemberController {
 
     @GetMapping("/save")
     public String saveForm() {
-        return "memberSave";
+        return "memberPages/memberSave";
     }
 
     @PostMapping("/save")
     public String save(@ModelAttribute MemberDTO memberDTO, Model model) {
         boolean memberResult = memberService.save(memberDTO);
         model.addAttribute("memberResult", memberResult);
-        return "memberLogin";
+        return "memberPages/memberLogin";
     }
 
 
@@ -35,6 +36,28 @@ public class MemberController {
         return checkResult;
     }
 
+    @GetMapping("/member")
+    public String findByEmail(@RequestParam("memberEmail") String memberEmail, Model model){
+        MemberDTO memberDTO = memberService.findByEmail(memberEmail);
+        model.addAttribute("member",memberDTO);
+        return "memberList";
+    }
 
+
+
+    @GetMapping("/myPage")
+    public String pageForm(HttpSession session, Model model){
+       String memberEmail = (String) session.getAttribute("loginEmail");
+       MemberDTO memberDTO = memberService.findByEmail(memberEmail);
+        model.addAttribute("member",memberDTO);
+        return "myPage";
+    }
+    @PostMapping("/myPage")
+    public String myPage(@ModelAttribute MemberDTO memberDTO , Model model){
+        memberService.myPage(memberDTO);
+        MemberDTO dto = memberService.findByEmail(memberDTO.getMemberEmail());
+        model.addAttribute("member",dto);
+        return "myPage";
+    }
 
 }

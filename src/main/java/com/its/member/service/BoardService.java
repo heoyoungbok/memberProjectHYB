@@ -1,6 +1,6 @@
 package com.its.member.service;
 
-import com.its.member.commos.PagingConst;
+import com.its.member.commons.PagingConst;
 import com.its.member.dto.BoardDTO;
 import com.its.member.dto.PageDTO;
 import com.its.member.repository.BoardRepository;
@@ -79,5 +79,13 @@ public class BoardService {
 
     public void delete(Long id) {
         boardRepository.delete(id);
+    }
+
+    public List<BoardDTO> search(String type, String q) {
+        Map<String,String> searchParams = new HashMap<>();
+        searchParams.put("type",type);
+        searchParams.put("q",q);
+        List<BoardDTO> searchList = boardRepository.search(searchParams);
+        return searchList;
     }
 }

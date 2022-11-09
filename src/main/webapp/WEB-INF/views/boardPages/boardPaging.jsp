@@ -21,14 +21,15 @@
   }
 </style>
 </body>
-<jsp:include page="layout/header.jsp" flush="false"></jsp:include>
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 <div class="container" id="list">
   <table class="table table-striped table-hover text-center">
     <tr>
       <th>번호</th>
       <th>제목</th>
+<%--      <th>내용</th>--%>
       <th>작성자</th>
-<%--      <th>날짜</th>--%>
+      <th>날짜</th>
       <th>조회수</th>
       <%--         <th>삭제</th>--%>
       <%--         <th>수정</th>--%>
@@ -39,10 +40,12 @@
         <td>
           <a href="/board?id=${board.id}&page=${paging.page}">${board.boardTitle}</a>
         </td>
-        <td>${board.boardTitle}</td>
+<%--        <td>${board.boardTitle}</td>--%>
         <td>${board.boardWriter}</td>
-        <td>${board.boardCreatedDate}</td>
-       <td><fmt:formatDate value="${board.boardCreatedDate}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate></td>
+<%--        <td>${board.boardCreatedDate}</td>--%>
+
+       <td><c:set var="now" value="<%=new java.util.Date()%>" /><fmt:formatDate var="sysYear" value="${now}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+       <c:out value="${sysYear}" /></td>
         <td>${board.boardHits}</td>
 
       </tr>
@@ -54,7 +57,7 @@
     <c:choose>
       <c:when test="${paging.page<=1}">
         <li class="page-item disabled">
-          <a href="page-link">[이전]</a>
+          <a class="page-link">[이전]</a>
         </li>
       </c:when>
 

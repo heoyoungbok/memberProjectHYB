@@ -4,9 +4,9 @@
 
 
 <mapper namespace="Comment">
-    <insert id="commentSave" parameterType="comment">
-        insert into comment_table (commnetWriter,commentContents,boardId) values
-            (#{commnetWriter},#{commentContents},#{boardId})
+    <insert id="save" parameterType="comment">
+        insert into comment_table (commentWriter,commentContents,boardId)
+        values (#{commentWriter},#{commentContents},#{boardId})
     </insert>
 
     <select id="findAll" parameterType="Long" resultType="comment">

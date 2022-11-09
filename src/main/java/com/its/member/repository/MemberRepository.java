@@ -30,6 +30,12 @@ public class MemberRepository {
     }
 
 
+    public MemberDTO findByEmail(String memberEmail) {
+        return sql.selectOne("Member.findByEmail",memberEmail);
+    }
 
+    public void myPage(MemberDTO memberDTO) {
+        sql.update("Member.myPage",memberDTO);
+    }
 }
 

@@ -12,8 +12,8 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
-    public List<CommentDTO> commentSave(CommentDTO commentDTO){
-        return  commentRepository.commentSave(commentDTO);
+    public void save(CommentDTO commentDTO){
+          commentRepository.save(commentDTO);
     }
     public List<CommentDTO> findAll(Long boardId) {
         return commentRepository.findAll(boardId);

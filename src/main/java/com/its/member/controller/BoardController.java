@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
-import javax.xml.stream.events.Comment;
 import java.io.IOException;
 import java.util.List;
 
@@ -26,7 +25,7 @@ private CommentService commentService;
 
     @GetMapping("/save")
     public String saveForm(){
-        return "boardSave";
+        return "boardPages/boardSave";
     }
 
     @PostMapping("/save")
@@ -38,7 +37,7 @@ private CommentService commentService;
     public String findAll(Model model){
         List<BoardDTO> boardList = boardService.findAll();
         model.addAttribute("boardList",boardList);
-        return "boardPaging";
+        return "boardPages/boardPaging";
     }
 
     @GetMapping("/paging")
@@ -47,7 +46,7 @@ private CommentService commentService;
         PageDTO pageDTO = boardService.PagingParam(page);
         model.addAttribute("boardList",pagingList);
         model.addAttribute("paging",pageDTO);
-        return "boardPaging";
+        return "boardPages/boardPaging";
     }
 
     @GetMapping
@@ -59,14 +58,14 @@ private CommentService commentService;
         model.addAttribute("page",page);
         List<CommentDTO> commentDTOList = commentService.findAll(id);
         model.addAttribute("commentList",commentDTOList);
-        return "boardDetail";
+        return "boardPages/boardDetail";
     }
 
     @GetMapping("/update")
     public String updateForm(@RequestParam("id")Long id, Model model){
         BoardDTO boardDTO = boardService.findById(id);
         model.addAttribute("board",boardDTO);
-        return "boardUpdate";
+        return "boardPages/boardUpdate";
     }
 
     @PostMapping("/update")
@@ -75,11 +74,7 @@ private CommentService commentService;
         BoardDTO dto = boardService.findById(boardDTO.getId());
         model.addAttribute("board",dto);
 
-
-
-
-
-        return "boardDetail";
+        return "boardPages/boardDetail";
 
 
     }
@@ -90,7 +85,7 @@ private CommentService commentService;
     public String deleteCheck(@RequestParam("id") Long id, Model model){
         BoardDTO boardDTO = boardService.findById(id);
         model.addAttribute("board",boardDTO);
-        return "deleteCheck";
+        return "boardPages/deleteCheck";
     }
 
     @GetMapping("/delete")
@@ -101,8 +96,15 @@ private CommentService commentService;
 
 
 
-
-
+    @GetMapping("/search")
+    public String search(@RequestParam("type")String type,
+                          @RequestParam("q") String q, Model model){
+        System.out.println("type = " + type + ", q = " + q + ", model = " + model); // 중간출력확인
+        List<BoardDTO> searchList = boardService.search(type, q);
+        model.addAttribute("boardList",searchList); //  보드리스트 파라미터
+        System.out.println("searchList = " + searchList); //
+        return "boardPages/boardPaging";
+    }
 }
 
 

@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,7 +21,7 @@ public class HomeController {
     }
     @GetMapping("login")
     public String loginForm(){
-        return "memberLogin";
+        return "memberPages/memberLogin";
     }
     @PostMapping("/login")
     public String login(@ModelAttribute MemberDTO memberDTO, HttpSession session, Model model) {
@@ -32,7 +31,7 @@ public class HomeController {
             model.addAttribute("modelEmail", memberDTO.getMemberEmail());
             return "redirect:/board/paging";
         } else {
-            return "memberLogin";
+            return "memberPages/memberLogin";
         }
     }
 

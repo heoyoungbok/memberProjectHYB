@@ -4,13 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 @Getter
 @Setter
 @ToString
 public class CommentDTO {
-    private Long commentId;
+    private Long id;
     private String commentWriter;
     private String commentContents;
     private Long boardId;

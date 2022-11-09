@@ -74,6 +74,11 @@ private CommentService commentService;
         boardService.update(boardDTO);
         BoardDTO dto = boardService.findById(boardDTO.getId());
         model.addAttribute("board",dto);
+
+
+
+
+
         return "boardDetail";
 
 

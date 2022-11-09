@@ -21,4 +21,5 @@ public class BoardDTO {
     private String originalFileName;
     private String storedFileName;
     private int fileAttached;
+
 }

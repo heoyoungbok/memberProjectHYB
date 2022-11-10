@@ -28,7 +28,7 @@ private CommentService commentService;
         return "boardPages/boardSave";
     }
 
-    @PostMapping("/save")
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String boardSave(@ModelAttribute BoardDTO boardDTO) throws IOException {
         boardService.boardSave(boardDTO);
         return "redirect:/board/";

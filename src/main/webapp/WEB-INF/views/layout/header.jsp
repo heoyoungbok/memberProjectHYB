@@ -51,6 +51,9 @@
                         <button type="button" onclick="Signup()" class="btn btn-warning">Sign-up</button>
                     </c:otherwise>
                 </c:choose>
+                <c:if test="${sessionScope.loginEmail == 'admin'}">
+                    <button type="button" onclick="memberListFn()">회원전체목록(관리자용)</button>
+                </c:if>
             </div>
         </div>
     </div>
@@ -69,6 +72,10 @@
 
     const myPageFF = () => {
       location.href="/myPage";
+    }
+
+    const memberListFn = () => {
+      location.href="/memberList";
     }
 </script>
 </html>

@@ -6,6 +6,8 @@ import com.its.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MemberService {
     @Autowired
@@ -53,6 +55,15 @@ public class MemberService {
 
     public void myPage(MemberDTO memberDTO) {
          memberRepository.myPage(memberDTO);
+    }
+
+    public List<MemberDTO> memberList() {
+        return  memberRepository.memberList();
+
+    }
+
+    public void delete(Long id) {
+        memberRepository.delete(id);
     }
 }
 

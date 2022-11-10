@@ -13,12 +13,14 @@
   <script src="/resources/js/jquery.js"></script>
 </head>
 <body>
+<jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
+<div class="container" id="list">
+    <table class="table table-striped table-hover text-center">
         <tr>
             <th>번호</th>
             <th>이메일</th>
             <th>비밀번호</th>
             <th>이름</th>
-            <th>나이</th>
             <th>전화번호</th>
         </tr>
         <c:forEach items="${memberList}" var="member">
@@ -27,10 +29,21 @@
                 <td>${member.memberEmail}</td>
                 <td>${member.memberPassword}</td>
                 <td>${member.memberName}</td>
-                <td>${member.memberAge}</td>
                 <td>${member.memberMobile}</td>
+
+                <td>
+                    <button class="btn btn-danger"onclick="deleteMember('${member.id}')">삭제</button>
+                </td>
 
             </tr>
         </c:forEach>
+    </table>
+</div>
 </body>
+     <script>
+         const deleteMember = (clickId) => {
+           console.log("클릭한 id",clickId)
+             location.href="/delete?id="+clickId;
+         }
+     </script>
 </html>

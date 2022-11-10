@@ -16,11 +16,11 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
  <style>
 #boardDetail{
-    width: 750px;
+    width: 800px;
     margin-top: 50px;
 }
 #comment-write{
-    width: 500px;
+    width: 600px;
 }
  </style>
 
@@ -28,7 +28,7 @@
 <body>
 <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
 <div class="container" id="boardDetail">
-<table class="table table-striped">
+<table class="table table-hover">
     <tr>
         <th>id</th>
         <td>${board.id}</td>
@@ -45,28 +45,22 @@
         <th>contents</th>
         <td>${board.boardContents}</td>
     </tr>
-    <tr>
-        <th>Hits</th>
-        <td>${board.boardHits}</td>
-    </tr>
-    <tr>
-        <th>date</th>
-        <td><c:set var="now" value="<%=new java.util.Date()%>" /><fmt:formatDate var="sysYear" value="${now}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
-            <c:out value="${sysYear}" /></td>
-    </tr>
+
     <c:if test="${board.storedFileName != null}">
-        <tr>
-            <th>file</th>
+                <tr>
             <td>
                 <img src="${pageContext.request.contextPath}/upload/${board.storedFileName}"
-                    alt="" width="100" height="100">
+                     alt="" width="100" height="100">
             </td>
         </tr>
     </c:if>
+  <c:if test="${sessionScope.loginEmail == board.boardWriter}">
+    <td>
+        <button  onclick="updateFn()">수정</button> <%---버튼 권한설정  --%>
+        <button onclick="deleteFn()">삭제</button>
+    </td>
+    </c:if>
 </table>
-    <button onclick="listFn()">목록</button>
-    <button onclick="updateFn()">수정</button>
-    <button onclick="deleteFn()">삭제</button>
 </div>
 <div class="container mt-5" id="comment-write" >
     <div class="input-group-sm mb-3">
@@ -101,6 +95,7 @@
         </c:forEach>
     </table>
 </div>
+
 <script>
     const commentWrite = () => {
         const writer = document.getElementById("commentWriter").value;
@@ -139,10 +134,6 @@
                 console.log("실패");
             }
         });
-    }
-    const listFn = () => {
-        const page='${page}';
-      location.href="/board/paging?page=" + page;
     }
     const updateFn = () => {
         const id = '${board.id}';

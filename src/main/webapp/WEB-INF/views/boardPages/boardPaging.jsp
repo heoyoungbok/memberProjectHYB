@@ -31,6 +31,7 @@
       <th>작성자</th>
       <th>날짜</th>
       <th>조회수</th>
+
       <%--         <th>삭제</th>--%>
       <%--         <th>수정</th>--%>
     </tr>
@@ -44,12 +45,17 @@
         <td>${board.boardWriter}</td>
 <%--        <td>${board.boardCreatedDate}</td>--%>
 
-       <td><c:set var="now" value="<%=new java.util.Date()%>" /><fmt:formatDate var="sysYear" value="${now}" pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
-       <c:out value="${sysYear}" /></td>
+       <td><fmt:formatDate value="${board.boardCreatedDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
         <td>${board.boardHits}</td>
 
+          <c:if test="${sessionScope.loginEmail == 'admin'}">
+              <td>
+                  <button class="btn btn-warning" onclick="deleteBoard('${board.id}')">게시글 삭제</button>
+              </td>
+          </c:if>
       </tr>
     </c:forEach>
+
   </table>
 </div>
 <div class="container">
@@ -97,4 +103,9 @@
   </ui>
 </div>
 </body>
+<script>
+  const deleteBoard = (clickedId) => {
+    location.href="/board/delete?id="+clickedId;
+  }
+</script>
 </html>

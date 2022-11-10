@@ -19,6 +19,18 @@
     <select id="findByEmail" parameterType="String" resultType="member">
         select *from member_table where memberEmail=#{memberEmail}
     </select>
+
+    <update id="myPage" parameterType="member" >
+        update member_table set memberPassword=#{memberPassword}, memberName=#{memberName} ,memberMobile=#{memberMobile} ,fileAttached=#{fileAttached} where memberPassword=#{memberPassword}
+    </update>
+
+    <select id="memberList" resultType="member">
+        select* from member_table
+    </select>
+
+    <delete id="delete" parameterType="Long">
+        delete from member_table where id=#{id}
+    </delete>
 </mapper>
 
 

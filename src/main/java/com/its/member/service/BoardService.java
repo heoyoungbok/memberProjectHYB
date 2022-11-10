@@ -20,14 +20,20 @@ public class BoardService {
     private BoardRepository boardRepository;
 
     public void boardSave(BoardDTO boardDTO) throws IOException {
+        System.out.println("파일있음");
         if(!boardDTO.getBoardFile().isEmpty()){
-            MultipartFile boardFile = boardDTO.getBoardFile();
-            String originalFilename = boardFile.getOriginalFilename();
-            String storedFileName = System.currentTimeMillis() + "-" + originalFilename;
-            String savePath = "C:\\spring_img1\\"+storedFileName;
-            boardFile.transferTo(new File(savePath));
+            MultipartFile boardFile = boardDTO.getBoardFile();//1
+            String originalFilename = boardFile.getOriginalFilename();//2
+            System.out.println("originalFilename = " + originalFilename);
+            System.out.println(System.currentTimeMillis());
+            String storedFileName = System.currentTimeMillis() + "-" + originalFilename;//3
+            System.out.println("storedFileName = " + storedFileName);
+            boardDTO.setOriginalFileName(originalFilename);
+            boardDTO.setStoredFileName(storedFileName); //4
+            String savePath = "C:\\spring_img1\\"+storedFileName; //5
+            boardFile.transferTo(new File(savePath));//6
             boardDTO.setFileAttached(1);
-            BoardDTO savedBoard = boardRepository.boardSave(boardDTO);
+            BoardDTO savedBoard = boardRepository.boardSave(boardDTO); //7
             boardRepository.saveFileName(savedBoard);
         } else {
             boardDTO.setFileAttached(0);

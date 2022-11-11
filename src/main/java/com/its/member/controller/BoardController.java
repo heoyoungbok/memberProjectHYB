@@ -30,7 +30,9 @@ private CommentService commentService;
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String boardSave(@ModelAttribute BoardDTO boardDTO) throws IOException {
+        System.out.println("BoardController.boardSave");
         boardService.boardSave(boardDTO);
+        System.out.println("save완료");
         return "redirect:/board/";
     }
     @GetMapping("/")
@@ -53,6 +55,7 @@ private CommentService commentService;
     public String findById(@RequestParam("id") Long id,Model model,
                            @RequestParam(value = "page", required = false,defaultValue = "1")int page){
         boardService.updateHits(id);
+
         BoardDTO boardDTO = boardService.findById(id);
         model.addAttribute("board",boardDTO);
         model.addAttribute("page",page);

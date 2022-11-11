@@ -29,7 +29,7 @@
       <th>제목</th>
 <%--      <th>내용</th>--%>
       <th>작성자</th>
-      <th>날짜</th>
+<%--      <th>날짜</th>--%>
       <th>조회수</th>
 
       <%--         <th>삭제</th>--%>
@@ -43,10 +43,10 @@
         </td>
 <%--        <td>${board.boardTitle}</td>--%>
         <td>${board.boardWriter}</td>
-<%--        <td>${board.boardCreatedDate}</td>--%>
 
-       <td><fmt:formatDate value="${board.boardCreatedDate}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></td>
-        <td>${board.boardHits}</td>
+<%--          <td>${board.boardCreatedDate}</td>--%>
+
+               <td>${board.boardHits}</td>
 
           <c:if test="${sessionScope.loginEmail == 'admin'}">
               <td>

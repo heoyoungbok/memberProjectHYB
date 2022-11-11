@@ -35,9 +35,12 @@ public class BoardService {
             boardDTO.setFileAttached(1);
             BoardDTO savedBoard = boardRepository.boardSave(boardDTO); //7
             boardRepository.saveFileName(savedBoard);
+            System.out.println("BoardService.boardSave");
         } else {
+            System.out.println("nofile");
             boardDTO.setFileAttached(0);
-        }   boardRepository.boardSave(boardDTO);
+            boardRepository.boardSave(boardDTO);
+        }
     }
 
     public List<BoardDTO> findAll() {

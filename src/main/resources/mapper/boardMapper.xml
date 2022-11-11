@@ -26,7 +26,7 @@
     </select>
 
     <update id="updateHits" parameterType="Long">
-        update board_table set boardHits = boardHits +1 where  id=#{id}
+        update board_table set boardHits = boardHits +1 where id=#{id}
     </update>
 
     <update id="update" parameterType="board">
@@ -48,7 +48,6 @@
     <select id="search" parameterType="java.util.HashMap" resultType="board">
         select * from board_table where ${type} like concat('%',#{q},'%') order by id asc
     </select>
-
 
 </mapper>
 
